@@ -1,0 +1,61 @@
+#+TITLE: IPNS keys research
+#+PROPERTY: header-args:sh :session *shell ipns-keys sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell ipns-keys python* :results silent raw
+
+** Protobuf preparation
+
+#+BEGIN_SRC proto :tangle pb/crypto.proto
+syntax = "proto2";
+
+package crypto.pb;
+
+enum KeyType {
+	RSA = 0;
+	Ed25519 = 1;
+	Secp256k1 = 2;
+	ECDSA = 3;
+}
+
+message PublicKey {
+	required KeyType Type = 1;
+	required bytes Data = 2;
+}
+
+message PrivateKey {
+	required KeyType Type = 1;
+	required bytes Data = 2;
+}
+#+END_SRC
+
+#+BEGIN_SRC sh
+protoc -I ./pb --python_out=./src ./pb/crypto.proto
+#+END_SRC
+
+** Key file explore
+*** Imports
+
+#+BEGIN_SRC python
+from src import crypto_pb2
+#+END_SRC
+
+*** Read file content
+
+#+BEGIN_SRC python
+fn = "data/key_orsxg5a"
+content = open(fn, "rb").read()
+#+END_SRC
+
+*** Parse private key
+
+#+BEGIN_SRC python
+privkey = crypto_pb2.PrivateKey()
+privkey.ParseFromString(content)
+#+END_SRC
+
+*** Print private key
+
+#+BEGIN_SRC python
+print ("Private key:")
+print ("Type:", privkey.Type)
+print ("Hex:", privkey.Data.hex())
+#+END_SRC
