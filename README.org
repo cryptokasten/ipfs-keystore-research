@@ -28,14 +28,14 @@ message PrivateKey {
 #+END_SRC
 
 #+BEGIN_SRC sh
-protoc -I ./pb --python_out=./src ./pb/crypto.proto
+protoc -I ./pb --python_out=./pb ./pb/crypto.proto
 #+END_SRC
 
 ** Key file explore
 *** Imports
 
 #+BEGIN_SRC python
-from src import crypto_pb2
+from pb import crypto_pb2
 #+END_SRC
 
 *** Read file content
