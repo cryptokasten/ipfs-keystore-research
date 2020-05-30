@@ -1,6 +1,6 @@
-#+TITLE: IPNS keys research
-#+PROPERTY: header-args:sh :session *shell ipns-keys sh* :results silent raw
-#+PROPERTY: header-args:python :session *shell ipns-keys python* :results silent raw
+#+TITLE: IPNS keystore
+#+PROPERTY: header-args:sh :session *shell ipns-keystore sh* :results silent raw
+#+PROPERTY: header-args:python :session *shell ipns-keystore python* :results silent raw
 
 ** Protobuf preparation
 
