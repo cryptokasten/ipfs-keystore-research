@@ -70,7 +70,7 @@ def filename_to_keyname(fn):
 
 Ed25519 example key.
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 fn = "key_mvsdenjvge4q"
 keyname = filename_to_keyname(fn)
 keyname
@@ -83,7 +83,7 @@ ed25519
 
 (or) RSA example key.
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 fn = "key_ojzwc"
 keyname = filename_to_keyname(fn)
 keyname
@@ -94,7 +94,7 @@ keyname
 rsa
 #+end_src
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 keyname = "myed25519"
 fn = keyname_to_filename(keyname)
 fn
@@ -105,7 +105,7 @@ fn
 key_nv4wkzbsgu2tcoi
 #+end_src
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 keyname = "myrsa"
 fn = keyname_to_filename(keyname)
 fn
@@ -120,7 +120,7 @@ key_nv4xe43b
 
 Load key.
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 f = open("data/" + fn, "rb")
 serialized = f.read()
 f.close()
@@ -141,7 +141,7 @@ serialized = bytes.fromhex(serialzed_hex)
 
 ** Unmarshall key
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 msg = MSGTYPE()
 msg.ParseFromString(data)
 (msg.Type, len(msg.Data), msg.Data.hex())
@@ -170,7 +170,7 @@ key_hex = "308204a30201000282010100bbd8d3321be44ff92fac450bfb4b03351314bbda60b12
 key = bytes.fromhex(key_hex)
 #+END_SRC
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 msg = MSGTYPE()
 msg.Type = keytype
 msg.Data = key
@@ -185,7 +185,7 @@ serialized.hex()
 
 ** Write keyfile data
 
-#+BEGIN_SRC python :results replace code
+#+BEGIN_SRC python :results replace code :exports both
 f = open("data/"+fn, "wb")
 f.write(serialized)
 f.close()
